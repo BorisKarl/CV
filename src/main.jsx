@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
+import { GeneralInfo } from './General.jsx'
+import { EducationalInfo } from './Educational.jsx'
+import { PracticalInfo } from './Practical.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <GeneralInfo />
+    <EducationalInfo />
+    <PracticalInfo />
+
   </React.StrictMode>,
 )
