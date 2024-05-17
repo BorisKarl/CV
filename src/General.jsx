@@ -26,29 +26,34 @@ export function GeneralInfo() {
 
     return (
       <>
-        <div className="sectionGrid">
-          <form>
+        <section className="infoBlock">
+          <form className="inputform">
+            <h2>Fill in your contact info here</h2>
             <input
               value={generalInfo.name}
               onChange={handleInput}
               name="name"
               label="name"
-              placeholder="name"
+              placeholder="Name"
+              maxLength="20"
             ></input>
             <input
               value={generalInfo.email}
               onChange={handleInput}
               name="email"
               label="email"
-              placeholder="email"
+              placeholder="Email"
+              maxLength="20"
             ></input>
             <input
               value={generalInfo.phone}
               onChange={handleInput}
               name="phone"
               label="phone"
-              placeholder="phone"
+              placeholder="Phone"
+              maxLength="20"
             ></input>
+            <button onClick={resetForm}>RESET</button>
           </form>
 
           <section className="generalInfoSection">
@@ -67,8 +72,7 @@ export function GeneralInfo() {
               </tbody>
             </table>
           </section>
-        </div>
-        <button onClick={resetForm}>RESET</button>
+        </section>
       </>
     );
 }
