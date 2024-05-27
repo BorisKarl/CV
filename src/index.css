@@ -15,13 +15,17 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   height: 5em;
+  table-layout: fixed;
+  align-items: center;
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-  width: 250px;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+    
 }
 
 tr:nth-child(even) {
@@ -37,26 +41,33 @@ form {
   display: grid;
 }
 
-.infoBlock
-{
+.infoBlock {
   margin: 2%;
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  gap: 10%;
 }
-
 
 
 .inputform {
  color: blue;
  height: 200px;
+ width: auto;
 }
 
 .infoBlock form {
-  width: 30%;
+  width: 40%;
 }
 
 .infoBlock table {
   width: 100%;
 }
 
+@media print {
+  .inputform  {
+    display: none;
+  }
+  #printButton {
+    display: none;
+  }
+}

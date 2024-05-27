@@ -7,6 +7,7 @@ export function GeneralInfo() {
       phone: ""
     };
 
+
     const [generalInfo, setGeneralInfo] = useState(initialValues);
 
     const handleInput = (e) => {
@@ -22,6 +23,22 @@ export function GeneralInfo() {
         phone: ""
     });
     console.log(generalInfo);
+    }
+
+    const addInfo = (e) => {
+      e.preventDefault();
+      setGeneralInfo({
+        name: generalInfo.name,
+        email: generalInfo.email,
+        phone: generalInfo.phone
+      });
+
+      const button = document.getElementById("addGeneral");
+      if(generalInfo.name !== "" && generalInfo.phone != "" && generalInfo.email !== "") 
+        {
+          button.style.display = "none";
+        }
+
     }
 
     return (
@@ -53,6 +70,9 @@ export function GeneralInfo() {
               placeholder="Phone"
               maxLength="20"
             ></input>
+            <button id="addGeneral" onClick={addInfo}>
+              ADD
+            </button>
             <button onClick={resetForm}>RESET</button>
           </form>
 
