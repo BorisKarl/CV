@@ -15,16 +15,16 @@ export function EducationalInfo() {
     console.log(educationalInfo);
   };
 
-  const resetForm = () => {
+  const resetForm = (e) => {
+    e.preventDefault();
     setEducationalInfo(initialValues);
-    console.log(educationalInfo);
   };
 
   return (
     <>
       <section className="infoBlock">
         <form className="inputform">
-          <h2>Fill in your educational info here</h2>
+          <h2>Educational Info</h2>
           <input
             value={educationalInfo.schoolName}
             onChange={handleInput}

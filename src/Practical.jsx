@@ -16,16 +16,16 @@ export function PracticalInfo() {
     console.log(practicalInfo);
   };
 
-  const resetForm = () => {
+  const resetPractical = (e) => {
+    e.preventDefault();
     setPracticalInfo(initialValues);
-    console.log(practicalInfo);
   };
 
   return (
     <>
       <section className="infoBlock">
         <form className="inputform">
-          <h2>Fill in your practical info here</h2>
+          <h2>Practical Info</h2>
           <input
             value={practicalInfo.companyName}
             onChange={handleInput}
@@ -54,7 +54,7 @@ export function PracticalInfo() {
             placeholder="From when to when"
             maxLength="20"
           ></input>
-          <button onClick={resetForm}>RESET</button>
+          <button onClick={resetPractical}>RESET</button>
         </form>
         <div className="sectionGrid">
           <section className="generalInfoSection">
