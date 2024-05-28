@@ -1,10 +1,12 @@
 import { useState } from "react";
 
+let input_disabled = false;
+
 export function GeneralInfo() {
   const initialValues = {
     name: "",
     email: "",
-    phone: "",
+    phone: ""
   };
 
   const [generalInfo, setGeneralInfo] = useState(initialValues);
@@ -12,12 +14,16 @@ export function GeneralInfo() {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setGeneralInfo({ ...generalInfo, [name]: value });
-    console.log(generalInfo);
   };
 
   const resetForm = (e) => {
+    const button = document.getElementById("addGeneral");
     setGeneralInfo(initialValues);
     e.preventDefault();
+    input_disabled = false;
+    button.classList.remove("hide_button");
+    button.classList.add("show_button");
+
   };
 
   const addInfo = (e) => {
@@ -34,7 +40,9 @@ export function GeneralInfo() {
       generalInfo.phone != "" &&
       generalInfo.email !== ""
     ) {
-      button.style.display = "none";
+      button.classList.remove("show_button");
+      button.classList.add("hide_button");
+      input_disabled = true;
     }
   };
 
@@ -42,10 +50,12 @@ export function GeneralInfo() {
     <>
       <section className="infoBlock">
         <form className="inputform">
+          <div id="puffer"></div>
           <h2>Contact Info</h2>
           <input
             value={generalInfo.name}
             onChange={handleInput}
+            disabled={input_disabled}
             name="name"
             label="name"
             placeholder="Name"
@@ -54,6 +64,7 @@ export function GeneralInfo() {
           <input
             value={generalInfo.email}
             onChange={handleInput}
+            disabled={input_disabled}
             name="email"
             label="email"
             placeholder="Email"
@@ -62,6 +73,7 @@ export function GeneralInfo() {
           <input
             value={generalInfo.phone}
             onChange={handleInput}
+            disabled={input_disabled}
             name="phone"
             label="phone"
             placeholder="Phone"
@@ -72,23 +84,21 @@ export function GeneralInfo() {
           </button>
           <button onClick={resetForm}>RESET</button>
         </form>
-
-        <section className="generalInfoSection">
-          <table className="generalInfoTable">
-            <tbody>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-              </tr>
-              <tr>
-                <td>{generalInfo.name}</td>
-                <td>{generalInfo.email}</td>
-                <td>{generalInfo.phone}</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+        <div id="puffer"></div>
+        <table className="generalInfoTable">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+            <tr>
+              <td>{generalInfo.name}</td>
+              <td>{generalInfo.email}</td>
+              <td>{generalInfo.phone}</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </>
   );

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+let input_disabled = false;
+
 export function PracticalInfo() {
   const initialValues = {
     companyName: "",
@@ -13,13 +15,34 @@ export function PracticalInfo() {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setPracticalInfo({ ...practicalInfo, [name]: value });
-    console.log(practicalInfo);
   };
 
   const resetPractical = (e) => {
     e.preventDefault();
     setPracticalInfo(initialValues);
+    input_disabled = false;
   };
+
+    const addInfo = (e) => {
+      e.preventDefault();
+      setPracticalInfo({
+        companyName: practicalInfo.companyName,
+        position: practicalInfo.position,
+        responsibilities: practicalInfo.responsibilities,
+        date: practicalInfo.date,
+      });
+
+      const button = document.getElementById("addPractical");
+      if (
+          practicalInfo.companyName !== "" &&
+          practicalInfo.position != "" &&
+          practicalInfo.responsibilities !== "" &&
+          practicalInfo.date !== ""
+      ) {
+        button.style.display = "none";
+        input_disabled = true;
+      }
+    };
 
   return (
     <>
@@ -29,6 +52,7 @@ export function PracticalInfo() {
           <input
             value={practicalInfo.companyName}
             onChange={handleInput}
+            disabled={input_disabled}
             name="companyName"
             placeholder="Company Name"
             maxLength="20"
@@ -36,6 +60,7 @@ export function PracticalInfo() {
           <input
             value={practicalInfo.position}
             onChange={handleInput}
+            disabled={input_disabled}
             name="position"
             placeholder="Position"
             maxLength="20"
@@ -43,6 +68,7 @@ export function PracticalInfo() {
           <input
             value={practicalInfo.responsibilities}
             onChange={handleInput}
+            disabled={input_disabled}
             name="responsibilities"
             placeholder="Responsibilities"
             maxLength="40"
@@ -50,32 +76,33 @@ export function PracticalInfo() {
           <input
             value={practicalInfo.date}
             onChange={handleInput}
+            disabled={input_disabled}
             name="date"
             placeholder="From when to when"
             maxLength="20"
           ></input>
+          <button id="addPractical" onClick={addInfo}>
+            ADD
+          </button>
           <button onClick={resetPractical}>RESET</button>
         </form>
-        <div className="sectionGrid">
-          <section className="generalInfoSection">
-            <table className="generalInfoTable">
-              <tbody>
-                <tr>
-                  <th>Name of Company</th>
-                  <th>Position</th>
-                  <th>Responsibility</th>
-                  <th>Date of employment</th>
-                </tr>
-                <tr>
-                  <td>{practicalInfo.companyName}</td>
-                  <td>{practicalInfo.position}</td>
-                  <td>{practicalInfo.responsibilities}</td>
-                  <td>{practicalInfo.date}</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-        </div>
+        <div id="puffer"></div>
+        <table className="generalInfoTable">
+          <tbody>
+            <tr>
+              <th>Name of Company</th>
+              <th>Position</th>
+              <th>Responsibility</th>
+              <th>Date of employment</th>
+            </tr>
+            <tr>
+              <td>{practicalInfo.companyName}</td>
+              <td>{practicalInfo.position}</td>
+              <td>{practicalInfo.responsibilities}</td>
+              <td>{practicalInfo.date}</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </>
   );

@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+let input_disabled = false;
+
+
 export function EducationalInfo() {
   const initialValues = {
     schoolName: "",
@@ -18,7 +21,27 @@ export function EducationalInfo() {
   const resetForm = (e) => {
     e.preventDefault();
     setEducationalInfo(initialValues);
+    input_disabled = false;
   };
+  
+    const addInfo = (e) => {
+      e.preventDefault();
+      setEducationalInfo({
+      schoolName:    educationalInfo.schoolName,
+      studies:       educationalInfo.studies,
+      dateOfStudies: educationalInfo.dateOfStudies
+      });
+
+      const button = document.getElementById("addEdu");
+      if (
+        educationalInfo.schoolName !== "" &&
+        educationalInfo.studies != "" &&
+        educationalInfo.dateOfStudies !== ""
+      ) {
+        button.style.display = "none";
+        input_disabled = true;
+      }
+    };
 
   return (
     <>
@@ -28,6 +51,7 @@ export function EducationalInfo() {
           <input
             value={educationalInfo.schoolName}
             onChange={handleInput}
+            disabled={input_disabled}
             name="schoolName"
             placeholder="Name of your school"
             maxLength="36"
@@ -35,6 +59,7 @@ export function EducationalInfo() {
           <input
             value={educationalInfo.studies}
             onChange={handleInput}
+            disabled={input_disabled}
             name="studies"
             placeholder="Subject"
             maxLength="20"
@@ -42,30 +67,31 @@ export function EducationalInfo() {
           <input
             value={educationalInfo.dateOfStudies}
             onChange={handleInput}
+            disabled={input_disabled}
             name="dateOfStudies"
             placeholder="Date"
             maxLength="15"
           ></input>
+          <button id="addEdu" onClick={addInfo}>
+            ADD
+          </button>
           <button onClick={resetForm}>RESET</button>
         </form>
-        <div className="sectionGrid">
-          <section className="generalInfoSection">
-            <table className="generalInfoTable">
-              <tbody>
-                <tr>
-                  <th>Name of School</th>
-                  <th>Title of studies</th>
-                  <th>Date of study</th>
-                </tr>
-                <tr>
-                  <td>{educationalInfo.schoolName}</td>
-                  <td>{educationalInfo.studies}</td>
-                  <td>{educationalInfo.dateOfStudies}</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-        </div>
+        <div id="puffer"></div>
+        <table className="generalInfoTable">
+          <tbody>
+            <tr>
+              <th>Name of School</th>
+              <th>Title of studies</th>
+              <th>Date of study</th>
+            </tr>
+            <tr>
+              <td>{educationalInfo.schoolName}</td>
+              <td>{educationalInfo.studies}</td>
+              <td>{educationalInfo.dateOfStudies}</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </>
   );

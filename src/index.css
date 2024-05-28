@@ -7,8 +7,8 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.generalInfoSection {
- font-size: xx-large;
+.generalInfoTable {
+ font-size: x-large;
 }
 
 table {
@@ -16,7 +16,16 @@ table {
   border-collapse: collapse;
   height: 5em;
   table-layout: fixed;
-  align-items: center;
+  margin-top: 6.2%;
+  width: 40em;
+ 
+}
+
+.hide_button {
+  visibility: hidden;
+}
+.show_button {
+  visibility: visible;
 }
 
 td, th {
@@ -25,7 +34,6 @@ td, th {
   padding: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
-    
 }
 
 tr:nth-child(even) {
@@ -33,39 +41,49 @@ tr:nth-child(even) {
 }
 
 th {
-  height: 80px;
+  height: 2.5em;
 }
 
 
 form {
   display: grid;
-}
-
-.infoBlock {
-  margin: 2%;
-  display: flex;
-  flex-direction: row;
-  gap: 10%;
+  width: 25em;
 }
 
 
 .inputform {
- color: blue;
- height: 200px;
- width: auto;
+ color: black;
+ height: 250px;
 }
 
-.infoBlock form {
-  width: 40%;
+
+#printButton {
+  height: 2em;
+  width: 3em;
+  font-size: larger;
+  margin-left: 94%;
 }
 
-.infoBlock table {
-  width: 100%;
+#printButton:hover {
+  transform: skewX(200deg);
+}
+
+.infoBlock {
+  margin: 2%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
 }
 
 @media print {
   .inputform  {
     display: none;
+  }
+  .infoBlock {
+    display: block;
+  }
+  table {
+    width: 100% !important;
+    font-size: medium;
   }
   #printButton {
     display: none;
