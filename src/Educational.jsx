@@ -21,7 +21,10 @@ export function EducationalInfo() {
   const resetForm = (e) => {
     e.preventDefault();
     setEducationalInfo(initialValues);
-    input_disabled = false;
+     const button = document.getElementById("addEdu");
+     button.classList.remove("hide_button");
+     button.classList.add("show_button");
+
   };
   
     const addInfo = (e) => {
@@ -38,8 +41,8 @@ export function EducationalInfo() {
         educationalInfo.studies != "" &&
         educationalInfo.dateOfStudies !== ""
       ) {
-        button.style.display = "none";
-        input_disabled = true;
+         button.classList.remove("show_button");
+         button.classList.add("hide_button");
       }
     };
 

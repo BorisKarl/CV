@@ -17,10 +17,9 @@ export function GeneralInfo() {
   };
 
   const resetForm = (e) => {
-    const button = document.getElementById("addGeneral");
     setGeneralInfo(initialValues);
     e.preventDefault();
-    input_disabled = false;
+    const button = document.getElementById("addGeneral");
     button.classList.remove("hide_button");
     button.classList.add("show_button");
 
