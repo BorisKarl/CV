@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { GeneralInfo } from './General.jsx'
-import { EducationalInfo } from './Educational.jsx'
-import { PracticalInfo } from './Practical.jsx'
-import { PrintButton } from './Button.jsx'
+import { GeneralInfo } from './components/General.jsx'
+import { EducationalInfo } from "./components/Educational.jsx";
+import { PracticalInfo } from "./components/Practical.jsx";
+import { PrintButton } from "./components/Button.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
